@@ -10,6 +10,54 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container">
+        <div class="row">
+          <section class="header-box">
+            <div class="header-logo">
+              <h1>LOGO</h1>
+            </div>
+            <nav>
+              <ul class="header-ul">
+                <% if end_user_signed_in? %>
+                  <li class="header-item">
+                    <%= link_to "マイページ",end_users_show_path,class:'btn btn-info'%>
+                  </li>
+                  <li class="header-item">商品一覧</li>
+                  <li class="header-item">
+                    <%=link_to "カート" ,new_end_user_registration_path ,class:'btn btn-success'%>
+                  </li>
+                  <li class="header-item">
+                    <%=link_to "ログアウト" ,destroy_end_user_session_path,method: :delete ,class:'btn btn-danger'%>
+                  </li>
+                <% elsif admin_signed_in? %>
+                  <li class="header-item">商品一覧</li>
+                  <li class="header-item">会員一覧</li>
+                  <li class="header-item">注文履歴一覧</li>
+                  <li class="header-item">ジャンル一覧</li>
+                  <li class="header-item">
+                    <%=link_to "ログアウト" ,destroy_admin_session_path,method: :delete ,class:'btn btn-danger'%>
+                  </li>
+                <% else %>
+                  <li class="header-item">商品一覧</li>
+                  <li class="header-item">
+                    <%=link_to "新規登録" ,new_end_user_registration_path ,class:'btn btn-success'%>
+                  </li>
+                  <li class="header-item">
+                    <%=link_to "ログイン" ,new_end_user_session_path ,class:'btn btn-primary'%>
+                  </li>
+                <% end %>
+              </ul>
+            </nav>
+          </section>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
