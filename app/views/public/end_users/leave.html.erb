@@ -1,2 +1,17 @@
-<h1>Public::EndUsers#leave</h1>
-<p>Find me in app/views/public/end_users/leave.html.erb</p>
+<style>
+	.row{
+		text-align: center;
+	}
+</style>
+<section class="row">
+	<h3><strong>本当に退会しますか？</strong></h3><br>
+	<p>退会すると、会員登録情報や<br>
+		これまでの購入履歴が閲覧できなくなります。<br>
+		退会する場合は、「退会する」をクリックしてください。
+	</p>
+</section>
+
+<div class="row mt-15">
+	<%= link_to "退会しない",end_users_path,class:'btn btn-info mr-15'%>
+	<%= link_to "退会する",end_users_withdrawal_path,method: :patch,data: {confirm: "本当にいいんですか？"},class:'btn btn-danger'%>
+</div>

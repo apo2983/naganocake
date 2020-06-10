@@ -17,6 +17,14 @@
   @import "bootstrap-sprockets"; 
   @import "bootstrap";
 
+.mt-15{
+  margin-top: 15px;
+}
+
+.mr-15{
+  margin-right: 15px;
+}
+
 section.header-box{
 	align-items: center;
     display: flex;

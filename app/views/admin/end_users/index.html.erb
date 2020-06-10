@@ -1,0 +1,35 @@
+<style>
+	th{
+		border: 0px none;
+	}
+	td{
+		border: 0px none;
+	}
+</style>
+<div class="row">
+	<h3>会員一覧</h3>
+	<table class="table" style="table-layout: fixed;">
+		<thead>
+			<tr>
+				<th style="width: 5%;">会員ID</th>
+				<th>氏名</th>
+				<th>メールアドレス</th>
+				<th>ステータス</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @end_users.each do |end_user| %>
+				<tr>
+					<td><%= end_user.id %></td>
+					<td><%= end_user.last_name%> <%= end_user.first_name %></td>
+					<td><%= end_user.email %></td>
+					<% if end_user.is_valid == true %>
+						<td>有効</td>
+					<% else %>
+						<td>退会済み</td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

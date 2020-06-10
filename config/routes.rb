@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'end_users/index'
+    get 'end_users/show'
+    get 'end_users/edit'
+  end
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -19,6 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'tops#top'
+    resources :end_users,only: [:index,:show,:edit,:update]
   end
 
   root to: 'public/items#top'
@@ -26,10 +32,9 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'items/index' => 'items#index'
     get 'items/show' => 'items#show'
-    get 'end_users/show' => 'end_users#show'
-    get 'end_users/edit' => 'end_users#edit'
+    resource :end_users,only: [:show,:edit,:update]
     get 'end_users/leave' => 'end_users#leave'
-    get 'end_users/withdrawal' => 'end_users#withdrawal'
+    patch 'end_users/withdrawal' => 'end_users#withdrawal'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

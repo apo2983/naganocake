@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
 
-	before_action :authenticate_end_user!,except: [:top]
+	# before_action :authenticate_end_user!,except: [:top]
 end

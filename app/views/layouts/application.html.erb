@@ -21,7 +21,7 @@
               <ul class="header-ul">
                 <% if end_user_signed_in? %>
                   <li class="header-item">
-                    <%= link_to "マイページ",end_users_show_path,class:'btn btn-info'%>
+                    <%= link_to "マイページ",end_users_path,class:'btn btn-info'%>
                   </li>
                   <li class="header-item">商品一覧</li>
                   <li class="header-item">
@@ -32,7 +32,9 @@
                   </li>
                 <% elsif admin_signed_in? %>
                   <li class="header-item">商品一覧</li>
-                  <li class="header-item">会員一覧</li>
+                  <%= link_to admin_end_users_path do %>
+                    <li class="header-item btn btn-primary">会員一覧</li>
+                  <% end %>
                   <li class="header-item">注文履歴一覧</li>
                   <li class="header-item">ジャンル一覧</li>
                   <li class="header-item">
@@ -55,8 +57,8 @@
       </div>
     </header>
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <p class="notice" style="color: green;"><%= notice %></p>
+      <p class="alert" style="color: red;"><%= alert %></p>
       <%= yield %>
     </div>
   </body>

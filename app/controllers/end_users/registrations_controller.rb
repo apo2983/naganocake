@@ -3,7 +3,7 @@
 class EndUsers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters,if: :devise_controller?
   def after_sign_up_path_for(resource)
-     end_users_show_path
+     end_users_path
   end
   protected
   def configure_permitted_parameters

@@ -1,2 +1,45 @@
-<h1>Public::EndUsers#show</h1>
-<p>Find me in app/views/public/end_users/show.html.erb</p>
+<h2>マイページ</h2>
+
+<div class="row">
+	<div class="col-xs-6">
+		<strong>登録情報</strong>
+		<%= link_to "編集",edit_end_users_path,class:'btn btn-primary'%>
+		<%= link_to "パスワードを変更する",edit_end_users_path,class:'btn btn-primary'%>
+	</div>
+</div>
+
+<div class="row mt-15">
+	<table class="table" style="width: 60%">
+		<tr>
+			<th>氏名</th>
+			<td><%= current_end_user.last_name %> <%= current_end_user.first_name %></td>
+		</tr>
+		<tr>
+			<th>カナ</th>
+			<td><%= current_end_user.last_name_kana %> <%= current_end_user.first_name_kana%></td>
+		</tr>
+		<tr>
+			<th>郵便番号</th><td><%= current_end_user.postal_code %></td>
+		</tr>
+		<tr>
+			<th>住所</th><td><%= current_end_user.address %></td>
+		</tr>
+		<tr>
+			<th>電話番号</th><td><%= current_end_user.phone_number %></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th><td><%= current_end_user.email %></td>
+		</tr>
+	</table>
+</div>
+
+<div class="row">
+	<strong class="col-xs-2" style="float: left;width: 10rem;">配送先</strong>
+	<%= link_to "一覧を見る",edit_end_users_path,class:'btn btn-primary '%>
+</div>
+
+<div class="row mt-15">
+	<strong class="col-xs-2" style="float: left;width: 10rem;">注文履歴</strong>
+	<%= link_to "一覧を見る",edit_end_users_path,class:'btn btn-primary '%>
+</div>
+

@@ -3,10 +3,10 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="row field">
-    <div class="col-xs-3">
+    <div class="col-xs-2">
       <%= f.label :last_name, "名前" %> 
     </div>
-    <div class="col-xs-1">
+    <div class="col-xs-2">
       <p style='text-align: right;'>(姓)</p>
     </div>
     <div class="col-xs-3">
@@ -23,10 +23,10 @@
   </div>
 
   <div class="row field">
-    <div class="col-xs-3">
+    <div class="col-xs-2">
        <%= f.label :last_name_kana, "フリガナ" %>
     </div>
-    <div class="col-xs-1">
+    <div class="col-xs-2">
       <p style='text-align: right;'>(セイ)</p>
     </div>
     <div class="col-xs-3">
