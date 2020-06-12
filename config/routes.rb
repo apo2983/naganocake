@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'end_users/index'
-    get 'end_users/show'
-    get 'end_users/edit'
-  end
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -25,6 +20,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'tops#top'
     resources :end_users,only: [:index,:show,:edit,:update]
+    resources :genres,only: [:index,:create,:edit,:update]
+    resources :items,except: [:destroy]
   end
 
   root to: 'public/items#top'

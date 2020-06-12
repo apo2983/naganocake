@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/23d68cbf4b.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -23,7 +24,9 @@
                   <li class="header-item">
                     <%= link_to "マイページ",end_users_path,class:'btn btn-info'%>
                   </li>
-                  <li class="header-item">商品一覧</li>
+                  <li class="header-item">
+                    <%= link_to "商品一覧",items_index_path,class:'btn btn-warning'%>
+                  </li>
                   <li class="header-item">
                     <%=link_to "カート" ,new_end_user_registration_path ,class:'btn btn-success'%>
                   </li>
@@ -31,14 +34,18 @@
                     <%=link_to "ログアウト" ,destroy_end_user_session_path,method: :delete ,class:'btn btn-danger'%>
                   </li>
                 <% elsif admin_signed_in? %>
-                  <li class="header-item">商品一覧</li>
-                  <%= link_to admin_end_users_path do %>
-                    <li class="header-item btn btn-primary">会員一覧</li>
+                  <%= link_to admin_items_path do %>
+                    <li class="header-item btn btn-default">商品一覧</li>
                   <% end %>
-                  <li class="header-item">注文履歴一覧</li>
-                  <li class="header-item">ジャンル一覧</li>
+                  <%= link_to admin_end_users_path do %>
+                    <li class="header-item btn btn-default">会員一覧</li>
+                  <% end %>
+                    <li class="header-item">注文履歴一覧</li>
+                  <%= link_to admin_genres_path do %>
+                    <li class="header-item btn btn-default">ジャンル一覧</li>
+                  <% end %>
                   <li class="header-item">
-                    <%=link_to "ログアウト" ,destroy_admin_session_path,method: :delete ,class:'btn btn-danger'%>
+                    <%=link_to "ログアウト" ,destroy_admin_session_path,method: :delete ,class:'btn btn-default'%>
                   </li>
                 <% else %>
                   <li class="header-item">商品一覧</li>

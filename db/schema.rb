@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_072927) do
+ActiveRecord::Schema.define(version: 2020_06_12_072449) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,6 +44,24 @@ ActiveRecord::Schema.define(version: 2020_06_09_072927) do
     t.index ["deleted_at"], name: "index_end_users_on_deleted_at"
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_valid", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "image_id"
+    t.string "name"
+    t.text "detail"
+    t.integer "price"
+    t.boolean "is_sale", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

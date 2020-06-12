@@ -1,0 +1,35 @@
+// Place all the styles related to the admin::items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+select#item_genre_id {
+   width: 33.3333333333%;
+    height: 3rem;
+    border-radius: 5px;
+    }
+
+select#item_is_sale{
+	width: 33.3333333333%;
+    height: 3rem;
+    border-radius: 5px;
+}
+
+.col-xs-8 {
+    position: relative;
+}
+
+input.btn.btn-info.mt-15px.btn-lg{
+	position: absolute;
+    bottom: -6rem;
+    right: 20rem;
+    padding: 1rem 5rem;
+}
+
+.plus-icon{
+    text-align: right;
+}
+
+i.fas.fa-plus-circle{
+    font-size: xxx-large;
+}
+

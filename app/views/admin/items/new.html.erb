@@ -1,0 +1,46 @@
+<div class="row">
+	<% if @item.errors.any? %>
+		<div class="alert alert-warning">
+			<h2><%= @item.errors.count %> 件のエラーがあります。</h2>
+			<ul>
+				<% @item.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+</div>
+<h3>商品新規登録</h3>
+<div class="row mt-5rem">
+	<%= form_with model: @item, url:admin_items_path,id: 'admin_items',class: 'admin_items' ,local:true do |f| %>
+		<div class="col-xs-4">
+			<%= f.attachment_field :image %>
+		</div>
+		<div class="col-xs-8">
+			<div class="field col-xs-12">
+				<%= f.label :name,"商品名",class:'col-xs-2' %>
+				<%= f.text_field :name,class:'col-xs-4' %>
+			</div>
+			<div class="field col-xs-12 mt-15px">
+				<%= f.label :detail,"商品説明",class:'col-xs-2' %>
+				<%= f.text_area :detail,rows: 5,class:'col-xs-4' %>
+			</div>
+			<div class="field col-xs-12 mt-15px">
+				<%= f.label :genre_id,"ジャンル",class:'col-xs-2' %>
+				<div class="selectbox">
+					<%= f.collection_select :genre_id,Genre.all, :id, :name ,:include_blank => "--選択してください--" %>
+				</div>
+			</div>
+			<div class="field col-xs-12 mt-15px">
+				<%= f.label :price,"税別価格",class:'col-xs-2' %>
+				<%= f.text_field :price,class:'col-xs-4'%>
+				<span class="ml-15px">円</span>
+			</div>
+			<div class="field col-xs-12 mt-15px">
+				<%= f.label :is_sale,"販売ステータス",class:'col-xs-2'%>
+				<%= f.select :is_sale,[["販売中",true],["販売停止中",false]],include_blank: "--選択してください--"%>
+			</div>
+			<%= f.submit "新規登録",class:'btn btn-info mt-15px btn-lg' %>
+		</div>
+	<% end %>
+</div>
