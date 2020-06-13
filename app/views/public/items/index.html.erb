@@ -13,7 +13,7 @@
 				</div>
 				<div class="col-xs-12">
 					<p class="mt-5px"><strong><%= item.name %></strong></p>
-					<p class="mt-5px"><strong>¥<%= item.price %></strong></p>
+					<p class="mt-5px"><strong>¥<%= "#{item.price * 1.10}".to_i %></strong></p>
 				</div>
 			</div>
 		<% end %>

@@ -27,8 +27,7 @@ Rails.application.routes.draw do
   root to: 'public/items#top'
 
   scope module: :public do
-    get 'items/index' => 'items#index'
-    get 'items/show' => 'items#show'
+  	resources :items,only: [:index,:show]
     resource :end_users,only: [:show,:edit,:update]
     get 'end_users/leave' => 'end_users#leave'
     patch 'end_users/withdrawal' => 'end_users#withdrawal'
