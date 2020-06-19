@@ -8,6 +8,8 @@ class EndUser < ApplicationRecord
 
   acts_as_paranoid
 
+  has_many :cart_items
+
   def active_for_authentication?
   	super && (self.is_valid == true)
   end

@@ -27,10 +27,14 @@ Rails.application.routes.draw do
   root to: 'public/items#top'
 
   scope module: :public do
-  	resources :items,only: [:index,:show]
     resource :end_users,only: [:show,:edit,:update]
     get 'end_users/leave' => 'end_users#leave'
     patch 'end_users/withdrawal' => 'end_users#withdrawal'
+    resources :items,only: [:index,:show] do
+    	resources :cart_items,only: [:create]
+	end
+	delete 'cart_items' => 'cart_items#destroy_all'
+	resources :cart_items,only: [:index,:update,:destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

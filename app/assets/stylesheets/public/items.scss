@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-img.attachment.item.image {
-    width: 100%;
+img.attachment.item.image.img-items {
+    width: 100% !important;
+    min-width: 10rem;
+}
+
+select#quantity{
+	height: 3rem;
+    border-radius: 5px;
 }
