@@ -26,7 +26,8 @@ class Public::CartItemsController < ApplicationController
   def create
   	if current_end_user.cart_items.find_by(item_id:params[:item_id]).present?
 	  	   cart_item = current_end_user.cart_items.find_by(item_id:params[:item_id])
-	  	   cart_item.update(cart_item_params) #require(:cart_item)をいれるとなぜかエラーになる。
+	  	   cart_item.quantity += params[:cart_item][:quantity].to_i
+	  	   cart_item.save
   		   redirect_to cart_items_path
   	else
   		item = Item.find(params[:item_id])
@@ -41,7 +42,7 @@ class Public::CartItemsController < ApplicationController
 
   private
   def cart_item_params
-  	params.permit(:quantity)
+  	params.require(:cart_item).permit(:quantity)
   end
   	
 end

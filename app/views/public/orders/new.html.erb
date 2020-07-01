@@ -1,0 +1,50 @@
+<h3>注文情報入力</h3>
+
+<%= form_with model:@order,url: orders_path,id: 'orders',class:'orders',local: true do |f| %>
+	<div class="row">
+	    <span><strong>支払方法</strong></span><br>
+	 	<div class="radio-button col-xs-12">
+		    <%= f.radio_button :payment_method, :credit_card, checked: true %>
+		    <%= f.label :payment_method_credit_card,"クレジットカード" %>
+		</div>
+		<div class="radio-button col-xs-12">
+		    <%= f.radio_button :payment_method, :bank_transfer %>
+		    <%= f.label :payment_method_bank_transfer,"銀行振り込み" %>
+		</div>
+	</div>
+	<div class="row">
+	    <span><strong>お届け先</strong></span><br>
+	 	<div class="radio-button col-xs-12">
+		    <%= f.radio_button :address_option,0, checked: true %>
+		    <%= f.label :address_option_0,"ご自身の住所",style:'display:inline-block;' %>
+		    <div class="col-xs-12">
+		    	<p style="padding-left: "><%= @end_user.address %><br>
+		    	<%= @end_user.last_name %><%= @end_user.first_name%></p>
+		    </div>
+		</div>
+		<div class="radio-button col-xs-12">
+		    <%= f.radio_button :address_option,1 %>
+		    <%= f.label :address_option_1,"登録住所から選択"%><br>
+		    <div class="col-xs-12">
+		    	<%= f.collection_select :shipping,current_end_user.shippings,:id,:shipping_property,class:'col-xs-12' %>
+		    </div>
+		</div>
+		<div class="radio-button col-xs-12 mt-15px">
+		    <%= f.radio_button :address_option,2 %>
+		    <%= f.label :address_option_2,"新しいお届け先",style:'display:inline-block;' %>
+		    <div class="field col-xs-12">
+		    	<%= f.label :postal_code,"郵便番号(ハイフンなし)",class:'col-xs-3' %>
+		    	<%= f.text_field :postal_code %>
+		    </div>
+		    <div class="field mt-15px col-xs-12">
+		    	<%= f.label :address,"住所",class:'col-xs-3' %>
+		    	<%= f.text_field :address,class:'col-xs-5 ' %>
+		    </div>
+		    <div class="field mt-15px col-xs-12">
+		    	<%= f.label :name,"宛名",class:'col-xs-3' %>
+		    	<%= f.text_field :name %>
+		    </div>
+		</div>
+		<%= f.submit "確認画面へ進む",class:'btn btn-primary mt-15px col-xs-4 col-xs-offset-4'%>
+	</div>
+<% end %>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/index'
+    get 'orders/show'
+  end
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -22,6 +26,8 @@ Rails.application.routes.draw do
     resources :end_users,only: [:index,:show,:edit,:update]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :items,except: [:destroy]
+    resources :order_details,only: [:update]
+    resources :orders,only: [:index,:show,:update]
   end
 
   root to: 'public/items#top'
@@ -30,11 +36,17 @@ Rails.application.routes.draw do
     resource :end_users,only: [:show,:edit,:update]
     get 'end_users/leave' => 'end_users#leave'
     patch 'end_users/withdrawal' => 'end_users#withdrawal'
+
     resources :items,only: [:index,:show] do
     	resources :cart_items,only: [:create]
 	end
+
 	delete 'cart_items' => 'cart_items#destroy_all'
 	resources :cart_items,only: [:index,:update,:destroy]
+
+	get 'orders/confirm' => 'orders#confirm'
+    get 'orders/done' => 'orders#done'
+	resources :orders,only: [:new,:index,:show,:create]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

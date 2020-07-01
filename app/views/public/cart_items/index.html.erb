@@ -22,15 +22,20 @@
 						<%= attachment_image_tag cart_item.item,:image,format:'jpeg',fallback:'no_image.jpg',size:'50' %>
 						<%= cart_item.item.name %>
 					</td>
-					<td class="center"><%= "#{cart_item.item.price * 1.10}".to_i.to_s(:delimited) %></td>
-					<%= form_with model:cart_item,url:cart_item_path(cart_item.id),method: :patch,id:'cart_item',class:'cart_item',local: true do |f| %>
-						<td class="center">
+					<td class="center">
+						<%= "#{cart_item.item.price * 1.10}".to_i.to_s(:delimited) %></td>
+					<td class="center">
+						<%= form_with model:cart_item,url:cart_item_path(cart_item.id),method: :patch,id:'cart_item',class:'cart_item',local: true do |f| %>
 							<%= f.text_field :quantity %>
-							<%= f.submit "変更" ,class:'btn btn-primary' %>	
-						</td>
-					<% end %>
-					<td class="center"><%= "#{cart_item.item.price * 1.10 * cart_item.quantity}".to_i.to_s(:delimited) %></td>
-					<td class="center" style="text-align: center;"><%= link_to "削除する",cart_item_path(cart_item.id),method: :delete,class:'btn btn-danger' %></td>
+							<%= f.submit "変更" ,class:'btn btn-primary' %>
+						<% end %>
+					</td>
+					<td class="center">
+						<%= "#{cart_item.item.price * 1.10 * cart_item.quantity}".to_i.to_s(:delimited) %>
+					</td>
+					<td class="center" style="text-align: center;">
+						<%= link_to "削除する",cart_item_path(cart_item.id),method: :delete,class:'btn btn-danger' %>
+					</td>
 					<% @sum += cart_item.item.price * 1.10 * cart_item.quantity %>
 				</tr>
 			<% end %>
@@ -47,4 +52,4 @@
 		</tr>
 	</table>
 </div>
-<%= link_to "情報入力に進む",items_path,class:'btn btn-success col-xs-4 col-xs-offset-4 mt-5rem' %>
+<%= link_to "情報入力に進む",new_order_path,class:'btn btn-success col-xs-4 col-xs-offset-4 mt-5rem' %>
