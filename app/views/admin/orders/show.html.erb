@@ -76,7 +76,7 @@
 				<span><strong>商品合計</strong></span>
 			</div>
 			<div class="col-xs-6">
-				<%= @order.total_payment.to_i.to_s(:delimited) %>円
+				<span><%= "#{@order.total_payment - @order.postage}".to_i.to_s(:delimited) %>円</span>
 			</div>
 		</div>
 		<div class="row mt-15px">
@@ -84,7 +84,7 @@
 				<span><strong>送料</strong></span>
 			</div>
 			<div class="col-xs-6" style="padding-left: 34px;">
-				<%= @order.postage.to_i.to_s(:delimited) %>円
+				<span><%= @order.postage.to_i.to_s(:delimited) %>円</span>
 			</div>
 		</div>
 		<div class="row mt-15px">
@@ -92,7 +92,7 @@
 				<span><strong>請求金額合計</strong></span>
 			</div>
 			<div class="col-xs-6">
-				<strong><%= "#{@order.total_payment + @order.postage}".to_i.to_s(:delimited) %>円
+				<strong><%= @order.total_payment.to_i.to_s(:delimited) %>円
 				</strong>
 			</div>
 		</div>

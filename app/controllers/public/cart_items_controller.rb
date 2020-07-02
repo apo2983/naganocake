@@ -17,7 +17,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-  	cart_items = CartItem.all
+  	cart_items = current_end_user.cart_items
   	cart_items.destroy_all
   	redirect_back(fallback_location: cart_items_path)
   	flash[:notice] = "カートを空にしました。"

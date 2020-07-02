@@ -4,7 +4,7 @@ class Public::OrdersController < ApplicationController
       @order = Order.new
       @end_user = current_end_user
     else
-      redirect_to cart_items_path,notice:'カートの中が空です。'
+      redirect_to cart_items_path,alert:'カートの中が空です。'
     end
   end
 
@@ -40,6 +40,7 @@ class Public::OrdersController < ApplicationController
         order_detail.price = cart_item.item.price * 1.10 
         order_detail.save
       end
+      current_end_user.cart_items.destroy_all
       redirect_to orders_done_path
     end 
   end
@@ -49,7 +50,7 @@ class Public::OrdersController < ApplicationController
       @cart_items = current_end_user.cart_items
       @order = current_end_user.orders.last
     else
-      redirect_to cart_items_path,notice:'カートの中が空です。'
+      redirect_to cart_items_path,alert:'カートの中が空です。'
     end
   end
 

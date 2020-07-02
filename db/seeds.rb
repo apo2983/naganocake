@@ -8,8 +8,35 @@
 
 Admin.create!(
 	email: "234@234",
-	password: "Goldbird22"
+	password: "123456"
 	)
+
+3.times do |n|
+	EndUser.create!(
+		email: "#{n + 1}23@123",
+		password: "#{n + 1}23456",
+		last_name: "test#{n + 1}",
+		first_name: "test#{n + 1}",
+		first_name_kana: "test#{n + 1}",
+		last_name_kana: "test#{n + 1}",
+		postal_code: "#{n + 1}234567",
+		address: "東京都渋谷区#{n + 1}",
+		phone_number: "#{n + 1}2345678901"
+	)
+end
+
+3.times do |n|
+	EndUser.all.each do |end_user|
+		end_user.shippings.create!(
+			end_user_id: "#{n + 1}",
+			postal_code: "#{n + 1}510000",
+			address: "東京都#{n + 1}",
+			name: "test#{n + 1}"
+			)
+	end
+end
+
+
 
 Genre.create!(
 	[
@@ -23,37 +50,40 @@ Genre.create!(
 		},
 		{
 		name: 'test3',
-		is_valid: true	
+		is_valid: true
 		}
 	]
 )
 
-Genre.all.each do |genre|
-	genre.items.create!(
-	[
-		{
-		image: File.open('./app/assets/images/rails.png'),
-		name: 'test1',
-		detail: 'test1',
-		price: '1000',
-		is_sale: true
-		},
-		{
-		image: File.open('./app/assets/images/rails.png'),
-		name: 'test2',
-		detail: 'test2',
-		price: '2000',
-		is_sale: true
-		},
-		{
-		image: File.open('./app/assets/images/rails.png'),
-		name: 'test3',
-		detail: 'test3',
-		price: '3000',
-		is_sale: true	
-		}
-	]
-)
+3.times do |n|
+	Item.create!(
+		[
+			{
+			genre_id: "1",
+			image: File.open('./app/assets/images/rails.png'),
+			name: "test#{n + 1}",
+			detail: "test#{n + 1}",
+			price: "#{n + 1}000",
+			is_sale: true
+			},
+			{
+			genre_id: "2",
+			image: File.open('./app/assets/images/rails.png'),
+			name: "test#{n + 1}",
+			detail: "test#{n + 1}",
+			price: "#{n + 1}000",
+			is_sale: true
+			},
+			{
+			genre_id: "3",
+			image: File.open('./app/assets/images/rails.png'),
+			name: "test#{n + 1}",
+			detail: "test#{n + 1}",
+			price: "#{n + 1}000",
+			is_sale: true
+			}
+		]
+	)
 end
 
 
