@@ -61,8 +61,19 @@
               </ul>
             </nav>
           </section>
-          </div>
         </div>
+        <% if admin_signed_in? %>
+          <div class="search-box">
+            <%= form_with url: admin_items_path,method: :get,local: true do |f| %>
+              <%= f.text_field :name,placeholder:"Search",class:"search" %>
+              <%= f.submit class:'glyphicon glyphicon-search' %>
+              <label for="name">
+                <span class="glyphicon glyphicon-search" aria-hidden="true">
+                </span>
+              </label>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </header>
     <div class="container">

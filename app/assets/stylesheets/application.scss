@@ -74,6 +74,30 @@ td{
     display: inline-block;
 }
 
+.search-box{
+  text-align: right;
+  position: relative;
+}
+
+.search {
+      width: 20rem;
+}
+
+input.glyphicon.glyphicon-search {
+    opacity: 0;
+    position: absolute;
+    right: 5px;
+    width: 3rem;
+    display: none;
+}
+
+span.glyphicon.glyphicon-search{
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  font-size: 18px;
+}
+
 
 
 

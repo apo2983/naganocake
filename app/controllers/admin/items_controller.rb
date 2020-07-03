@@ -1,6 +1,15 @@
 class Admin::ItemsController < ApplicationController
   def index
-  	@items = Item.all
+  	if params[:name].present?
+  		if Item.where(name:params[:name]).present?
+  			@items = Item.where("name LIKE ?","%#{params[:name]}%")
+  		else
+  		@items = Item.none
+  		flash[:alert] = "#{params[:name]}という商品はありません。"
+  		end
+  	else
+  		@items = Item.all
+  	end
   end
 
   def new
@@ -8,7 +17,6 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-  	binding.pry
   	@item = Item.new(item_params)
   	if @item.save
   	   redirect_to admin_item_path(@item.id)
@@ -23,6 +31,10 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
+  end
+
+  def search
+  	item = Item.search(params[:search])
   end
 
   private
