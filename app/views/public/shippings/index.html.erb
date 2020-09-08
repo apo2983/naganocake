@@ -1,0 +1,65 @@
+<% if @shipping.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipping.errors.count, "error") %> prohibited this shipping from being saved:</h2>
+
+      <ul>
+        <% @shipping.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h2>配送先登録/一覧</h2>
+<%= form_with model:@shipping,url:shippings_path,method: :post,local:true do |f| %>
+  <div class="row">
+    <div class="col-xs-3">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)"%>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :postal_code %>
+    </div>
+  </div>
+  <div class="row mt-5px">
+    <div class="col-xs-3">
+      <%= f.label :address, "住所" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.text_field :address,class:'col-xs-12' %>
+    </div>
+  </div>
+  <div class="row mt-5px">
+    <div class="col-xs-3">
+      <%= f.label :name, "宛名"%>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :name %>
+    </div>
+    <div class="col-xs-2 col-xs-offset-1">
+      <%= f.submit "登録する",class:'btn btn-success' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row mt-5rem">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shippings.each do |shipping| %>
+        <tr>
+          <td><%= shipping.postal_code %></td>
+          <td><%= shipping.address %></td>
+          <td><%= shipping.name %></td>
+          <td><%= link_to "編集する",edit_shipping_path(shipping.id),class:'btn btn-primary' %></td>
+          <td><%= link_to "削除する",shipping_path(shipping.id),method: :delete,date: {confirm:"本当に削除しますか？"},class:'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+</div>

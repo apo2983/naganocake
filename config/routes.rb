@@ -46,7 +46,9 @@ Rails.application.routes.draw do
 
 	post 'orders/confirm' => 'orders#confirm'
   get 'orders/done' => 'orders#done'
-	resources :orders,only: [:new,:index,:show,:create]
+  resources :orders,only: [:new,:index,:show,:create]
+  
+  resources :shippings,only: [:index,:edit,:create,:update,:destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
