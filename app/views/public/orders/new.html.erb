@@ -1,6 +1,6 @@
 <h3>注文情報入力</h3>
 
-<%= form_with model:@order,url: orders_path,id: 'orders',class:'orders',local: true do |f| %>
+<%= form_with model:@order,url:orders_confirm_path,method: :post,id: 'orders',class:'orders',local: true do |f| %>
 	<div class="row">
 	    <span><strong>支払方法</strong></span><br>
 	 	<div class="radio-button col-xs-12">
