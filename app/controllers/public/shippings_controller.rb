@@ -1,4 +1,7 @@
 class Public::ShippingsController < ApplicationController
+
+  before_action :set_user,only: [:edit,:update,:destroy]
+
   def index
     @shipping = Shipping.new
     @shippings = current_end_user.shippings
@@ -18,14 +21,24 @@ class Public::ShippingsController < ApplicationController
   end
 
   def update
+    if @shipping.update(shipping_params)
+      redirect_to shippings_path,notice:"配送先を更新しました"
+    else render 'edit'
+    end
   end
 
   def destroy
+    @shipping.destroy
+    redirect_to shippings_path
   end
 
   private
   def shipping_params
     params.require(:shipping).permit(:postal_code,:address,:name)
+  end
+
+  def set_user
+    @shipping = Shipping.find(params[:id])
   end
 
 end

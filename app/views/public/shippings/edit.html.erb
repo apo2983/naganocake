@@ -1,2 +1,33 @@
-<h1>Public::Shippings#edit</h1>
-<p>Find me in app/views/public/shippings/edit.html.erb</p>
+<h2>配送先編集</h2>
+<%= form_with model:@shipping,url:shipping_path,method: :patch,local:true do |f| %>
+  <div class="row mt-5px">
+    <div class="col-xs-3">
+      <%= f.label :postal_code,"郵便番号(ハイフンなし)" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :postal_code %>
+    </div>
+  </div>
+  <div class="row mt-5px">
+    <div class="col-xs-3">
+      <%= f.label :address,"住所" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.text_field :address,class:'col-xs-12' %>
+    </div>
+  </div>
+  <div class="row mt-5px">
+    <div class="col-xs-3">
+      <%= f.label :name,"宛名" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8"></div>
+    <div class="col-xs-4">
+      <%= f.submit "更新",class:'btn btn-success col-xs-6' %>
+    </div>
+  </div>
+<% end %>
