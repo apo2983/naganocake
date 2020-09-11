@@ -57,7 +57,7 @@
           <td><%= shipping.address %></td>
           <td><%= shipping.name %></td>
           <td><%= link_to "編集する",edit_shipping_path(shipping.id),class:'btn btn-primary' %></td>
-          <td><%= link_to "削除する",shipping_path(shipping.id),method: :delete,date: {confirm:"本当に削除しますか？"},class:'btn btn-danger' %></td>
+          <td><%= link_to "削除する",shipping_path(shipping.id),method: :delete,data: {confirm:"本当に削除しますか？"},class:'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
