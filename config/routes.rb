@@ -39,16 +39,16 @@ Rails.application.routes.draw do
 
     resources :items,only: [:index,:show] do
     	resources :cart_items,only: [:create]
-	end
+	  end
 
-	delete 'cart_items' => 'cart_items#destroy_all'
-	resources :cart_items,only: [:index,:update,:destroy]
+    delete 'cart_items' => 'cart_items#destroy_all'
+    resources :cart_items,only: [:index,:update,:destroy]
 
-	post 'orders/confirm' => 'orders#confirm'
-  get 'orders/done' => 'orders#done'
-  resources :orders,only: [:new,:index,:show,:create]
-  
-  resources :shippings,only: [:index,:edit,:create,:update,:destroy]
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/done' => 'orders#done'
+    resources :orders,only: [:new,:index,:show,:create]
+    
+    resources :shippings,only: [:index,:edit,:create,:update,:destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

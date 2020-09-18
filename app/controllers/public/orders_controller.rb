@@ -18,6 +18,13 @@ class Public::OrdersController < ApplicationController
       order_detail.price = cart_item.item.price * 1.10 
       order_detail.save
     end
+
+    shipping = current_end_user.shippings.new
+    shipping.postal_code = order.postal_code
+    shipping.address = order.address
+    shipping.name = order.name
+    shipping.save
+
     current_end_user.cart_items.destroy_all
     redirect_to orders_done_path
   end
@@ -53,9 +60,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_end_user.orders
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private

@@ -3,7 +3,12 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-  	 @items = Item.all
+    if Genre.find_by(name:"#{params[:genre_search]}").present?
+      genre = Genre.find_by(name:"#{params[:genre_search]}")
+      @items = genre.items
+    else
+      @items = Item.all
+    end
   end
 
   def show
